@@ -1,6 +1,7 @@
 package com.jpabook.jpashop.repository;
 
 import com.jpabook.jpashop.domain.Member;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,12 @@ public class MemberRepositoryTest {
         Member member = new Member();
         member.setUsername("memberA");
         Long saveId = memberRepository.save(member);
+        Member findMember = memberRepository.find(saveId);
+
+        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
+        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
+        Assertions.assertThat(findMember).isEqualTo(member); // jpa 엔티티 동일성 보장
+        // 결국엔 자기다.
+
     }
 }
