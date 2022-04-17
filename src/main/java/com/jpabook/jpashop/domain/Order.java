@@ -28,7 +28,7 @@ public class Order {
     private LocalDateTime orderDate; // 주문시간
 
     @Enumerated(EnumType.STRING)
-    private OrderState state;
+    private OrderStatus state;
     /**
     * 자바의 Enum타입을 엔티티 클래스의 속성으로 사용할 수 있다.
      * 두가지 enum 타입이 존재하는데
