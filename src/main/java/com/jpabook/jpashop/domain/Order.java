@@ -59,10 +59,10 @@ public class Order {
         member.getOrders().add(this);
     }
 
-    public void addOrderItem(OrderItem orderItem) {
-        orderItem.add(orderItem);
-        orderItem.setOrder(this);
-    }
+//    public void addOrderItem(OrderItem orderItem) {
+//        orderItem.add(orderItem);
+//        orderItem.setOrder(this);
+//    }
 
     public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
