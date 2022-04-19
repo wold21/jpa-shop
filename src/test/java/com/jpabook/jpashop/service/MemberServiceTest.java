@@ -1,5 +1,6 @@
 package com.jpabook.jpashop.service;
 
+import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.repository.MemberRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,5 +22,36 @@ public class MemberServiceTest {
     @Autowired
     MemberRepository memberRepository;
 
-    
+
+    @Test
+    public void join() throws Exception {
+
+        // Given
+        Member member = new Member();
+        member.setName("kim");
+
+        // When
+        Long saveId = memberService.join(member);
+
+        // Then
+        assertEquals(member, memberRepository.findOne(saveId));
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void duplicateCheck() throws Exception {
+
+        // Given
+        Member member1 = new Member();
+        member1.setName("one");
+
+        Member member2 = new Member();
+        member2.setName("one");
+
+        // When
+        memberService.join(member1);
+        memberService.join(member2);
+
+        // Then
+        fail("예외가 발생해야 함.");
+    }
 }
